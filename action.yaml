@@ -13,6 +13,10 @@ runs:
     - name: Checkout repository
       uses: actions/checkout@v2
       
+    - name: chmod Shell Script
+      run: chmod +x hello.sh
+      shell: sh
+      
     - name: Run Shell Script
       run: ./hello.sh
       shell: sh
