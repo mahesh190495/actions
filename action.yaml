@@ -12,19 +12,7 @@ runs:
   steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-      
-    - name: chmod Shell Script
-      run: chmod +x hello.sh
-      shell: sh
-      
-    - name: Run Shell Script
-      run: ./hello.sh
-      shell: sh
-      
-    - name: Echo Hello
-      run: echo "Hello ${{ inputs.name }}"
-      shell: sh
-      
+    
     - name: install helm
       run: |
           echo "${HOME}/.local/bin" >> $GITHUB_PATH
