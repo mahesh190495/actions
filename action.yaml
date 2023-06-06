@@ -12,7 +12,9 @@ runs:
   steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-    
+    - name: path
+      run: |
+        echo "$HOME/.local/bin" >> $GITHUB_PATH
     - name: install helm
       run: |
           echo "${HOME}/.local/bin" >> $GITHUB_PATH
