@@ -7,4 +7,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - id: foo
-        uses: ./
+        uses: ./windows/
