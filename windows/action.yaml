@@ -1,0 +1,20 @@
+name: Run Shell Script and Echo Hello
+
+# Declare the inputs for the composite action
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: install helm
+      run: |
+          curl -Lo get-helm-3.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+          attrib +x get-helm-3.sh 
+          ./get-helm-3.sh
+      shell: cmd
+      
+    - id: installation_verifiaction
+      run: helm version --short 
+      shell: bash
