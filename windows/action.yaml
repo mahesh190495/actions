@@ -12,7 +12,7 @@ runs:
       run: |
           curl -Lo get-helm-3.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
           attrib +x get-helm-3.sh 
-          ./get-helm-3.sh
+          ./get-helm-3.sh --no-sudo
       shell: cmd
       
     - id: installation_verifiaction
