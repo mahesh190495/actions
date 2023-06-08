@@ -8,17 +8,18 @@ inputs:
 runs:
   using: composite
   
-  steps:
+ steps:
     - name: Echo Hello
       shell: cmd
       run: |
+        echo "%INPUT%"
         if "%INPUT_INPUT%"=="hello" (
-          echo "Input is hello"
+          echo Input is hello
         )
         
     - name: Echo World
       shell: cmd
       run: |
         if "%INPUT_INPUT%"=="world" (
-          echo "Input is world"
+          echo Input is world
         )
