@@ -17,9 +17,6 @@ runs:
         powershell -ExecutionPolicy Bypass -Command "& .\get-latest-helm-version.ps1"
         echo "The helm version that will be installed is" %LATEST_VERSION%
 
-    - name: Install Helm
-      shell: cmd
-      run: |
-        echo "The helm version that will be installed is" %LATEST_VERSION%
+
 
 
