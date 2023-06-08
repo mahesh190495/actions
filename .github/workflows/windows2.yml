@@ -9,7 +9,7 @@ jobs:
       - name: installing helm
         uses: ./windows_cmd/
         with:
-          version: 3.6.0
+          version: 3.8.1
       - name: validation
         shell: cmd
         run: |
