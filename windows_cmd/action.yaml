@@ -12,13 +12,13 @@ runs:
     - name: Echo Hello
       shell: cmd
       run: |
-        if [ "${{ inputs.input }}" == "hello" ]; then
+        if "%INPUT_INPUT%"=="hello" (
           echo "Input is hello"
-        fi
+        )
         
     - name: Echo World
       shell: cmd
       run: |
-        if [ "${{ inputs.input }}" == "world" ]; then
+        if "%INPUT_INPUT%"=="world" (
           echo "Input is world"
-        fi
+        )
