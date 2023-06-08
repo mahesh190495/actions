@@ -24,22 +24,6 @@ runs:
     - name: Install Helm
       shell: cmd
       run: |
-        set URL=https://get.helm.sh/helm-v3.12.0-windows-amd64.zip
-        set ZIP_FILE=%TEMP%\helm.zip
-        set EXTRACT_PATH=%USERPROFILE%\Helm
-        mkdir %USERPROFILE%\Helm
-        echo Downloading Helm...
-        curl -o %ZIP_FILE% %URL%
+        echo "The helm version that will be installed is" %LATEST_VERSION%
 
-        echo Extracting Helm...
-        tar -xf %ZIP_FILE% -C %EXTRACT_PATH%
 
-        echo Adding Helm to PATH...
-        echo %EXTRACT_PATH% >> %GITHUB_PATH%
-
-        echo Helm installation completed.
-
-    - name: Verify Helm installation
-      shell: cmd
-      run: |
-        helm version
