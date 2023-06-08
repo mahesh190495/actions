@@ -4,26 +4,21 @@ inputs:
   version:
     description: 'The Helm version to install. Specify "latest" to install the latest version.'
     required: false
-    default: 'latest'
+    default: 'world'
 runs:
   using: composite
+  
   steps:
-    - name: Set up Git environment
-      uses: actions/checkout@v2
-
-    - name: Get Helm latest version
+    - name: Echo Hello
       shell: cmd
       run: |
-        set "VERSION=%{{ inputs.version }}%"
-
-        if "%VERSION%"=="latest" (
-          for /f "usebackq tokens=3" %%i in (`curl -sL https://api.github.com/repos/helm/helm/releases/latest ^| findstr /C:"tag_name"`) do (
-            set "VERSION=%%~i"
-          )
-        )
-        echo %{{ inputs.version }}%
-        echo %VERSION%
-
-
-
-
+        if [ "${{ inputs.input }}" == "hello" ]; then
+          echo "Input is hello"
+        fi
+        
+    - name: Echo World
+      shell: cmd
+      run: |
+        if [ "${{ inputs.input }}" == "world" ]; then
+          echo "Input is world"
+        fi
