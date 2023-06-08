@@ -6,4 +6,6 @@ if [ '${{ inputs.version }}' == "latest" ]; then
   Write-Output "Helm latest version: $latestVersion"
 else:
   $latestVersion='${{ inputs.version }}'
+  $ENV:LATEST_VERSION = $latestVersion
+  Write-Output "Helm latest version: $latestVersion"
   
