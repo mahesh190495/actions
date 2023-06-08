@@ -15,10 +15,7 @@ runs:
       shell: cmd
       run: |
         if '${{ inputs.version }}' == 'latest' (
-          for /f "tokens=2 delims=:," %%G in ('curl -s https://api.github.com/repos/helm/helm/releases/latest ^| findstr /C:"tag_name"') do (
-          set "LATEST_VERSION=%%G"
-          set LATEST_VERSION=!LATEST_VERSION:"=!
-          )
+          for /f "tokens=2 delims=:," %%G in ('curl -s https://api.github.com/repos/helm/helm/releases/latest ^| findstr /C:"tag_name"') do (  set "LATEST_VERSION=%%G"  )
         ) else (
           set LATEST_VERSION=v${{ inputs.version }}
         )
