@@ -14,13 +14,7 @@ runs:
     - name: Get Helm latest version
       shell: cmd
       run: |
-        if "{{ inputs.version }}"=="latest" (
-          powershell -ExecutionPolicy Bypass -Command "& .\get-latest-helm-version.ps1"
-          echo %{{ inputs.version }}%
-        ) else (
-          set "LATEST_VERSION=%INPUT_VERSION%"
-          echo "asd" %{{ inputs.version }}%
-        )
+        powershell -ExecutionPolicy Bypass -Command "& .\get-latest-helm-version.ps1"
         echo "The helm version that will be installed is" %LATEST_VERSION%
 
     - name: Install Helm
