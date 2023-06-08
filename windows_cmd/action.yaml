@@ -27,7 +27,7 @@ runs:
         set URL=https://get.helm.sh/helm-v3.12.0-windows-amd64.zip
         set ZIP_FILE=%TEMP%\helm.zip
         set EXTRACT_PATH=%USERPROFILE%\Helm
-
+        mkdir %USERPROFILE%\Helm
         echo Downloading Helm...
         curl -o %ZIP_FILE% %URL%
 
