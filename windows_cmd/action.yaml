@@ -16,13 +16,14 @@ runs:
       run: |
         if '${{ inputs.version }}' == 'latest' (
           for /f "tokens=2 delims=:," %%G in ('curl -s https://api.github.com/repos/helm/helm/releases/latest ^| findstr /C:"tag_name"') do set LATEST_VERSION=%%G
+          set LATEST_VERSION=%LATEST_VERSION: =%
+          set LATEST_VERSION=%LATEST_VERSION:"=%       
         ) else (
         set LATEST_VERSION=v${{ inputs.version }}
         echo %LATEST_VERSION%
         )
         echo "The helm version that will be installed is" %LATEST_VERSION%
-        set LATEST_VERSION=%LATEST_VERSION: =%
-        set LATEST_VERSION=%LATEST_VERSION:"=%
+        
         set URL=https://get.helm.sh/helm-%LATEST_VERSION%-windows-amd64.zip
         set ZIP_FILE=%TEMP%\helm.zip
         set EXTRACT_PATH=%USERPROFILE%\Helm
