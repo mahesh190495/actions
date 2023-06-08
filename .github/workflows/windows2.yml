@@ -7,7 +7,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: installing helm
-        uses: ./testing_windows_input/
+        uses: ./windows_cmd/
         with:
           version: 3.6.0
       - name: validation
