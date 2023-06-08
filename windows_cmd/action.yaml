@@ -1,0 +1,45 @@
+name: Install Helm
+description: Installs Helm on win64 runner
+inputs:
+  version:
+    description: 'The Helm version to install. Specify "latest" to install the latest version.'
+    required: false
+    default: 'latest'
+runs:
+  using: composite
+  steps:
+    - name: Set up Git environment
+      uses: actions/checkout@v2
+
+    - name: Get Helm latest version
+      shell: cmd
+      run: |
+        if "%INPUT_VERSION%"=="latest" (
+          powershell -ExecutionPolicy Bypass -Command "& .\get-latest-helm-version.ps1"
+        ) else (
+          set "LATEST_VERSION=%INPUT_VERSION%"
+        )
+        echo "The helm version that will be installed is" %LATEST_VERSION%
+
+    - name: Install Helm
+      shell: cmd
+      run: |
+        set URL=https://get.helm.sh/helm-%LATEST_VERSION%-windows-amd64.zip
+        set ZIP_FILE=%TEMP%\helm.zip
+        set EXTRACT_PATH=%USERPROFILE%\Helm
+
+        echo Downloading Helm...
+        curl -o %ZIP_FILE% %URL%
+
+        echo Extracting Helm...
+        tar -xf %ZIP_FILE% -C %EXTRACT_PATH%
+
+        echo Adding Helm to PATH...
+        echo %EXTRACT_PATH% >> %GITHUB_PATH%
+
+        echo Helm installation completed.
+
+    - name: Verify Helm installation
+      shell: cmd
+      run: |
+        helm version
