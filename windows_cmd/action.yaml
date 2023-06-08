@@ -4,22 +4,24 @@ inputs:
   version:
     description: 'The Helm version to install. Specify "latest" to install the latest version.'
     required: false
-    default: 'world'
+    default: 'latest'
 runs:
   using: composite
-  
- steps:
-    - name: Echo Hello
+  steps:
+    - name: Set up Git environment
+      uses: actions/checkout@v2
+
+    - name: Get Helm latest version
       shell: cmd
       run: |
-        echo "%INPUT%"
-        if "%INPUT_INPUT%"=="hello" (
-          echo Input is hello
+        if '${{ inputs.version }}' == 'latest' (
+          for /f "tokens=2 delims=:," %%G in ('curl -s https://api.github.com/repos/helm/helm/releases/latest ^| findstr /C:"tag_name"') do (
+          set "LATEST_VERSION=%%G"
+          set LATEST_VERSION=!LATEST_VERSION:"=!
+          )
+        ) else (
+          set LATEST_VERSION=v${{ inputs.version }}
         )
-        
-    - name: Echo World
-      shell: cmd
-      run: |
-        if "%INPUT_INPUT%"=="world" (
-          echo Input is world
-        )
+        echo "The helm version that will be installed is" %LATEST_VERSION%
+        set URL=https://get.helm.sh/helm-%LATEST_VERSION%-windows-amd64.zip
+        echo %URL%
