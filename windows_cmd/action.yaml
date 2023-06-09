@@ -14,7 +14,7 @@ runs:
     - name: Get Helm latest version
       shell: cmd
       run: |
-          for /f "delims=" %%L in ('powershell.exe -Command "(Invoke-WebRequest -Uri 'https://api.github.com/repos/helm/helm/releases/latest' -UseBasicParsing).Content | ConvertFrom-Json | Select-Object -ExpandProperty tag_name"') do set LATEST_VERSION=%%L      
+          for /f "delims=" %%L in ('powershell.exe -Command "(Invoke-WebRequest -Uri 'https://api.github.com/repos/helm/helm/releases/latest' -UseBasicParsing).Content | ConvertFrom-Json | Select-Object -ExpandProperty tag_name"') do set LATEST_VERSION=%%L
           echo %LATEST_VERSION%vv
           set URL=https://get.helm.sh/helm-%LATEST_VERSION%-windows-amd64.zip
           echo %URL%
