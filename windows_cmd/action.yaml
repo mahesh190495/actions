@@ -14,9 +14,7 @@ runs:
     - name: Get Helm latest version
       shell: cmd
       run: |
-          for /f "tokens=2 delims=:," %%G in ('curl -s https://api.github.com/repos/helm/helm/releases/latest ^| findstr /C:"tag_name"') do set LATEST_VERSION=%%G
-          set LATEST_VERSION=%LATEST_VERSION: =%
-          set LATEST_VERSION=%LATEST_VERSION:"=%       
+          for /f "delims=" %%L in ('powershell.exe -Command "(Invoke-WebRequest -Uri 'https://api.github.com/repos/helm/helm/releases/latest' -UseBasicParsing).Content | ConvertFrom-Json | Select-Object -ExpandProperty tag_name"') do set LATEST_VERSION=%%L      
           echo "The helm version that will be installed is" %LATEST_VERSION%
           set URL=https://get.helm.sh/helm-%LATEST_VERSION%-windows-amd64.zip
           echo %URL%
