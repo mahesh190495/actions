@@ -18,3 +18,4 @@ runs:
          echo LATEST_VERSION=%%L
          echo LATEST_VERSION=%%L >> $GITHUB_ENV
          )
+         set LATEST_VERSION
