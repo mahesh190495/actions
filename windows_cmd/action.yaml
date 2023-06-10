@@ -20,10 +20,10 @@ runs:
          echo HELM_VERSION=%%L
          echo HELM_VERSION=%%L >> $GITHUB_ENV
          ) else (
-         set HELM_VERSION=${{ inputs.version }}
-         echo HELM_VERSION=${{ inputs.version }}
+         set HELM_VERSION=v${{ inputs.version }}
+         echo HELM_VERSION=v${{ inputs.version }}
          echo HELM_VERSION=${{ inputs.version }} >> $GITHUB_ENV
          )
          
-         
+         set URL=https://get.helm.sh/helm-%HELM_VERSION%-windows-amd64.zip
          set HELM_VERSION
