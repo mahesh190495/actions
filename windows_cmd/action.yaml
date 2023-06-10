@@ -14,9 +14,16 @@ runs:
     - name: Get Helm latest version
       shell: cmd
       run: |
+         if '${{ inputs.version }}' == 'latest' (
          for /f "delims=" %%L in ('powershell.exe -Command "(Invoke-WebRequest -Uri 'https://api.github.com/repos/helm/helm/releases/latest' -UseBasicParsing).Content | ConvertFrom-Json | Select-Object -ExpandProperty tag_name"') do (
-         set LATEST_VERSION=%%L
-         echo LATEST_VERSION=%%L
-         echo LATEST_VERSION=%%L >> $GITHUB_ENV
+         set HELM_VERSION=%%L
+         echo HELM_VERSION=%%L
+         echo HELM_VERSION=%%L >> $GITHUB_ENV
+         ) else (
+         set HELM_VERSION=${{ inputs.version }}
+         echo HELM_VERSION=${{ inputs.version }}
+         echo HELM_VERSION=${{ inputs.version }} >> $GITHUB_ENV
          )
-         set LATEST_VERSION
+         
+         
+         set HELM_VERSION
