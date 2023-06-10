@@ -16,13 +16,14 @@ runs:
       run: |
         if '${{ inputs.version }}' == 'latest' (
         set %LATEST_VERSION%=v3.12.0
-        echo %LATEST_VERIOSN% >> %GITHUB_ENV%
+        echo LATEST_VERSION=%LATEST_VERSION% >> %GITHUB_ENV%
         echo %GITHUB_ENV%
-        set
+        set LATEST_VERSION
         ) else (
         set %LATEST_VERSION%=v${{ inputs.version }}
-        echo %LATEST_VERIOSN% >> %GITHUB_ENV%
-        echo %GITHUB_ENV  
+        echo LATEST_VERSION=%LATEST_VERSION% >> %GITHUB_ENV%
+
+        echo %GITHUB_ENV%  
         set     
         )
         set URL=https://get.helm.sh/helm-%LATEST_VERIOSN%-windows-amd64.zip
