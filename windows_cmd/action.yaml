@@ -19,7 +19,7 @@ runs:
          set HELM_VERSION=%%L
          echo HELM_VERSION=%%L
          echo HELM_VERSION=%%L >> $GITHUB_ENV
-         ) else (
+         )) else (
          set HELM_VERSION=v${{ inputs.version }}
          echo HELM_VERSION=v${{ inputs.version }}
          echo HELM_VERSION=${{ inputs.version }} >> $GITHUB_ENV
